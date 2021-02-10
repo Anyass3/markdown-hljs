@@ -1,6 +1,6 @@
 import hljs from './default';
 import svelte from './svelte-lang';
-export { Highlight, highlightCode, setLang, getlang, getHljs, setHljs } from './utils';
+export { Highlight, highlightCode, setLang, getLang, getHljs, setHljs } from './utils';
 
 import { setLang, setHljs } from './utils';
 

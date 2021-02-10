@@ -1,6 +1,6 @@
 {
   "name": "markdown-hljs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "markdown with code highlight",
   "jsdelivr": "lib/index.min.js",
   "main": "lib/index.js",
