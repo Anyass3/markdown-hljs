@@ -6,18 +6,17 @@ export const runMethods = (funcs, md) => {
 
 export const setupVariables = (md) => {
   const re = /\$(?<key>[A-Z]+)\s*\=\s*(?<value>(?:(?!\n).)+)/;
-  while (true) {
-    // console.log('setupVariables', md);
-    const match = md.match(re);
-    if (!match) break;
-    md = md.replace(match[0], '');
-    const reVar = RegExp(`\\{\\$${match.groups.key}\\}`);
-    while (true) {
-      const matchVar = md.match(reVar);
-      if (!matchVar) break;
-      // console.log(match[0], matchVar[0]);
-      md = md.replace(matchVar[0], match.groups.value);
-    }
-  }
+  const matches = md.match(RegExp(re, 'g'));
+  if (matches)
+    matches.forEach((match) => {
+      md = md.replace(match, '');
+      match = match.match(re);
+      const reStr = `\\{\\$${match.groups.key}\\}`;
+      const usages = md.match(RegExp(reStr, 'g'));
+      if (usages)
+        usages.forEach((matchVar) => {
+          md = md.replace(matchVar, match.groups.value);
+        });
+    });
   return md;
 };

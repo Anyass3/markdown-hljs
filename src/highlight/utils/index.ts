@@ -39,18 +39,18 @@ export const highlightCode = (lang, code) => {
       highlighted += hljs.highlight(lang, lineOfCode).value + '<br>';
     return highlighted;
   } catch (e) {
-    console.error(e);
+    console.log(e);
     return code;
   }
 };
 
 export const Highlight = (source) => {
-  let reNoLang = /<pre><code>(?<code>(?:(?!<\/code><\/pre>).[\n\t]*)+)<\/code><\/pre>/;
-  let reWithLang = /<pre><code class=['"]language-(?<lang>[a-z]+)['"]>(?<code>(?:(?!<\/code><\/pre>).[\n\t]*)+)<\/code><\/pre>/;
+  // let reNoLang = /<code>(?<code>(?:(?!<\/code>).[\n\t]*)+)<\/code>/;
+  let reWithLang = /<pre><code( class=['"]language-(?<lang>[a-z]+)['"])?>(?<code>(?:(?!<\/code><\/pre>).[\n\t]*)+)<\/code><\/pre>/;
   let prev_code = '',
     prev_lang = '';
   while (true) {
-    const result = source.match(reNoLang) || source.match(reWithLang);
+    const result = source.match(reWithLang);
     if (!result) break;
     const code = decodeHTML(result.groups.code);
     const lang = result.groups.lang;
@@ -62,10 +62,10 @@ export const Highlight = (source) => {
     if (lang)
       source = source.replace(
         result[0],
-        `<pre><code class='hljs ${lang}'>${highlightedCode}</pre></code>`
+        `<pre><code class='hljs ${lang}'>${highlightedCode}</code></pre>`
       );
     else
-      source = source.replace(result[0], `<pre><code class='hljs'>${highlightedCode}</pre></code>`);
+      source = source.replace(result[0], `<pre><code class='hljs'>${highlightedCode}</code></pre>`);
   }
   return source;
 };

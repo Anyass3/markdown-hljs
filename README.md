@@ -3,17 +3,20 @@ This build on top of [marked](https://marked.js.org/) and [highlightjs](https://
 So you markdown with code syntax highlighting
 
 ## installation
+
 ```bash
 npm i markdown-hljs
 ```
+
 cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
+
 ```html
 <script src="https://cdn.jsdelivr.net/npm/markdown-hljs"></script>
 ```
 
 [SVLETE REPL DEMO](https://svelte.dev/repl/700e245f3f4d4e07bc2302d2d2c87a2f?version=3.32.2)
 
-[SVLETE REPL DEMO](https://svelte.dev/repl/054f7e5c4b234bc5961dedcc3eddd3a3?version=3.32.2) with 
+[SVLETE REPL DEMO](https://svelte.dev/repl/054f7e5c4b234bc5961dedcc3eddd3a3?version=3.32.2) with
 [liquidjs](https://github.com/harttle/liquidjs)
 
 ## Docs
@@ -54,8 +57,8 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
   import xml from 'highlight.js/lib/languages/xml.js';
 
 
-  import Markdown from 'markdown-hljs/marked';
-  import {Highlight,setHljs,setLang} from 'markdown-hljs/highlight/utils';
+  import Markdown from 'markdown-hljs/lib/marked';
+  import {Highlight,setHljs,setLang} from 'markdown-hljs/lib/highlight/utils';
 
   setHljs(hljs)
 
@@ -70,7 +73,7 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
 - if you only need markdown without code syntax highlight:
 
   ```javascript
-  import Markdown from 'markdown-hljs/marked';
+  import Markdown from 'markdown-hljs/lib/marked';
 
   result=Markdown(markdown string)
 
@@ -79,7 +82,7 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
 - if you only need to highlight code with defaults
 
   ```javascript
-  import {Highlight,highlightCode} from 'markdown-hljs/highlight';
+  import {Highlight,highlightCode} from 'markdown-hljs/lib/highlight';
 
   result=Highlight(code string) // code in <pre><code>
   OR
@@ -88,7 +91,9 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
   ```
 
 ## Get started
+
 ### clone repo
+
 ```bash
 npm install
 npm run build
@@ -103,4 +108,5 @@ npm run dev
 ```
 
 Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+
 # markdown-hljs
