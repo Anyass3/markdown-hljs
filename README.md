@@ -2,6 +2,15 @@ This build on top of [marked](https://marked.js.org/) and [highlightjs](https://
 
 So you markdown with code syntax highlighting
 
+## installation
+```bash
+npm i markdown-hljs
+```
+cdn[link](https://cdn.jsdelivr.net/npm/markdown-hljs)
+```html
+<script src="https://cdn.jsdelivr.net/npm/markdown-hljs"></script>
+```
+
 [SVLETE REPL DEMO](https://svelte.dev/repl/700e245f3f4d4e07bc2302d2d2c87a2f?version=3.32.2)
 
 ## Docs
@@ -9,7 +18,7 @@ So you markdown with code syntax highlighting
 - not that needed you just have to understand markdown
 - for code syntax hightlighting you need to import a theme
   - from `highlight.js/scss/THEMENAME.scss` or `highlight.js/styles/THEMENAME.css` ---> THROUGH NPM NODE_MODULES
-  - or [TRY CDN](https://github.com/highlightjs/highlight.js)
+  - or [TRY CDN](https://github.com/highlightjs/highlight.js#cdn-hosted)
   - [CHECKOUT THE THEMES ](https://highlightjs.org/static/demo/)
 - if you wanted to declare a variable:
   - $CAPS= any - they are not visible
@@ -76,7 +85,7 @@ So you markdown with code syntax highlighting
   ```
 
 ## Get started
-
+### clone repo
 ```bash
 npm install
 npm run build
