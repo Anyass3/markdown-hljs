@@ -13,7 +13,7 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
 
 [SVLETE REPL DEMO](https://svelte.dev/repl/700e245f3f4d4e07bc2302d2d2c87a2f?version=3.32.2)
 
-[SVLETE REPL DEMO with liquidjs](https://svelte.dev/repl/054f7e5c4b234bc5961dedcc3eddd3a3?version=3.32.2)
+[SVLETE REPL DEMO](https://svelte.dev/repl/054f7e5c4b234bc5961dedcc3eddd3a3?version=3.32.2) with 
 [liquidjs](https://github.com/harttle/liquidjs)
 
 ## Docs
