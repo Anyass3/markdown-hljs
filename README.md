@@ -35,7 +35,7 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
   import customLang from './path-to-customLang'
   import xml from 'highlight.js/lib/languages/xml.js';
 
-  import Markdown,{setHljs} from 'markdown-hljs';
+  import Markdown,{setLang} from 'markdown-hljs';
 
   setLang({lang:'xml',fn:xml, alias: ['html']})
 
