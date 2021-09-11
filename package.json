@@ -1,11 +1,15 @@
 {
   "name": "markdown-hljs",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "markdown with code highlight",
   "jsdelivr": "lib/index.min.js",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
   "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    },
     "./marked": {
       "import": "./lib/marked/index.mjs",
       "require": "./lib/marked/index.js"
@@ -28,23 +32,23 @@
     "dev": "rollup -c -w",
     "prepublishOnly": "npm run build"
   },
-    "keywords": [
-        "marked",
-        "markdown",
-        "highlight",
-        "highlightjs",
-        "hljs"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Anyass3/markdown-hljs.git"
-    },
-    "author": "Abdoulie Nyass",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Anyass3/markdown-hljs/issues"
-    },
-    "homepage": "https://github.com/Anyass3/markdown-hljs#readme",
+  "keywords": [
+    "marked",
+    "markdown",
+    "highlight",
+    "highlightjs",
+    "hljs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anyass3/markdown-hljs.git"
+  },
+  "author": "Abdoulie Nyass",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anyass3/markdown-hljs/issues"
+  },
+  "homepage": "https://github.com/Anyass3/markdown-hljs#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",

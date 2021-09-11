@@ -1,5 +1,5 @@
 export { default as marked } from './marked';
-export { Highlight } from './highlight';
+export * from './highlight';
 
 import marked from './marked';
 import { Highlight } from './highlight';
