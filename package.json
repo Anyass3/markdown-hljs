@@ -1,6 +1,6 @@
 {
   "name": "markdown-hljs",
-  "version": "0.0.23",
+  "version": "0.1.0",
   "description": "markdown with code highlight",
   "jsdelivr": "lib/index.min.js",
   "main": "lib/index.js",
@@ -64,7 +64,7 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "highlight.js": "^10.5.0",
-    "marked": "^1.2.9"
+    "highlight.js": "^11.2.0",
+    "marked": "^3.0.3"
   }
 }

@@ -1,10 +1,7 @@
-// import hljs from './hljs';
+import type { HLJSApi, Language, LanguageFn } from 'highlight.js';
+let hljs: HLJSApi;
 
-let hljs;
-
-const languages = [];
-
-export const setHljs = (hl) => {
+export const setHljs = (hl: HLJSApi) => {
   hljs = hl;
 };
 
@@ -12,41 +9,64 @@ export const getHljs = () => {
   return hljs;
 };
 
-function decodeHTML(code) {
+function decodeHTML(code: string) {
   var doc = new DOMParser().parseFromString(code, 'text/html');
   return doc.documentElement.textContent;
 }
+type setLangKwArgs = {
+  language: string;
+  aliases?: Array<string>;
+  defineLanguage?: LanguageFn;
+};
 
-export async function setLang({ lang = '', alias = [], fn }) {
-  if (fn && typeof hljs !== 'undefined') {
-    hljs.registerLanguage(lang, fn);
+export async function setLang({ language, aliases = [], defineLanguage }: setLangKwArgs) {
+  if (hljs && language) {
+    if (defineLanguage) hljs.registerLanguage(language, defineLanguage);
+    hljs.registerAliases(aliases, { languageName: language });
   }
-  languages.push({ 0: lang, alias });
 }
 
-export const getLang = (lang) => {
-  for (let language of languages) {
-    if (language[0] === lang || language.alias.includes(lang)) return language[0];
+export const getLang = (languageAndOrAliases: string | Array<string>, error = false) => {
+  if (hljs) {
+    if (!languageAndOrAliases) return hljs.listLanguages();
+
+    let language: Language;
+
+    if (typeof languageAndOrAliases === 'string')
+      languageAndOrAliases = languageAndOrAliases
+        .split(',')
+        .filter((lang) => lang)
+        .map((lang) => lang.trim());
+
+    for (let lang of languageAndOrAliases) {
+      language = hljs.getLanguage(lang);
+      if (language) break;
+    }
+
+    if (error && !language) throw Error(`Unknown language(s) ${languageAndOrAliases.join(', ')}`);
+    return language;
   }
-  return lang;
 };
 
-export const highlightCode = (lang, code) => {
-  lang = getLang(lang);
-  try {
-    let highlighted = '';
-    for (let lineOfCode of code.split('\n'))
-      highlighted += hljs.highlight(lang, lineOfCode).value + '<br>';
-    return highlighted;
-  } catch (e) {
-    console.log(e);
-    return code;
-  }
+export const highlightCode = (
+  code: string = '',
+  languageAndOrAliases: string | Array<string> = '',
+  error: boolean = true
+) => {
+  // console.log({ languages, code, error });
+  const language = (getLang(languageAndOrAliases, error) as Language)?.name;
+  if (!language) return code;
+  let highlighted = '';
+  for (let lineOfCode of code.split('\n'))
+    highlighted += hljs.highlight(lineOfCode, { language }).value + '<br>';
+  return highlighted;
 };
 
-export const Highlight = (source) => {
+export const Highlight = (source, error?: boolean) => {
   // let reNoLang = /<code>(?<code>(?:(?!<\/code>).[\n\t]*)+)<\/code>/;
-  let reWithLang = /<pre><code( class=['"]language-(?<lang>[a-z]+)['"])?>(?<code>(?:(?!<\/code><\/pre>).[\n\t]*)+)<\/code><\/pre>/;
+  // console.log({ error });
+  let reWithLang =
+    /<pre><code( class=['"]language-(?<lang>[a-z,]+)['"])?>(?<code>(?:(?!<\/code><\/pre>).[\n\t]*)+)<\/code><\/pre>/;
   let prev_code = '',
     prev_lang = '';
   while (true) {
@@ -58,7 +78,7 @@ export const Highlight = (source) => {
     prev_code = code;
     prev_lang = lang;
 
-    const highlightedCode = highlightCode(lang, code);
+    const highlightedCode = highlightCode(code, lang, error);
     if (lang)
       source = source.replace(
         result[0],

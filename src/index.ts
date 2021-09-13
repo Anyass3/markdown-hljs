@@ -4,7 +4,7 @@ export * from './highlight';
 import marked from './marked';
 import { Highlight } from './highlight';
 
-export default (markdown) => {
+export default (markdown, error: boolean = false) => {
   const markedDown = marked(markdown);
-  return Highlight(markedDown);
+  return Highlight(markedDown, error);
 };

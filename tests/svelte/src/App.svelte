@@ -1,27 +1,26 @@
-<script>
-  // Import markdown conversion library
-  import Markdown from 'markdown-hljs';
+<script lang="ts">
+  import './night-owl.css';
+  // Import markdown-hljs conversion library
+  import Markdown, { marked, highlightCode, getHljs, getLang } from 'markdown-hljs';
 
   // Declare a variable to store the markdown data
 
-  let markdown = '';
-  $: markedDown = Markdown(markdown);
+  let markdown =
+    "$NAM=Anyass3\n### i declared a variable NAM => {$NAM}\n\nmy **[github profile](https://github.com/{$NAM})**\n\n```js\nlet wow='yahoo'\n```";
+  $: markedDown = Markdown(markdown, false);
+  window['langs'] = getLang;
+  window['getHljs'] = getHljs;
 </script>
 
-<h1>Markdown Editor</h1>
+<h1>Markdown with code syntax highlight Editor</h1>
 
 <!-- Declare a textarea where the user can enter markdown, and bind it to the variable `markdown` -->
 <textarea bind:value={markdown} placeholder="Enter markdown here" />
 
 {@html markedDown}
-<!-- Convert the markdown to HTML and display it -->
-<!-- <div class="preview">{preview}</div> -->
 
-<!-- Make it look (slightly) nicer ;) -->
-<style lang="scss" global>
-  @import './night-owl.scss';
-  textarea,
-  .preview {
+<style>
+  textarea {
     box-sizing: border-box;
     display: block;
     width: 100%;
@@ -33,12 +32,6 @@
     border: none;
     margin: 0;
     padding: 1rem;
-  }
-
-  .preview {
-    height: 75%;
-    padding: 2rem;
-    border-top: solid 2px #888;
   }
 
   h1 {
