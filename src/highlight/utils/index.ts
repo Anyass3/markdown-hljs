@@ -26,10 +26,13 @@ export async function setLang({ language, aliases = [], defineLanguage }: setLan
   }
 }
 
-export const getLang = (languageAndOrAliases: string | Array<string>, error = false) => {
+export const getLang = (
+  languageAndOrAliases: string | Array<string>,
+  { getMatch = false, error = false } = {}
+) => {
   if (hljs) {
-    if (!languageAndOrAliases) return hljs.listLanguages();
-
+    if (typeof languageAndOrAliases === undefined) return hljs.listLanguages();
+    let match;
     let language: Language;
 
     if (typeof languageAndOrAliases === 'string')
@@ -40,11 +43,12 @@ export const getLang = (languageAndOrAliases: string | Array<string>, error = fa
 
     for (let lang of languageAndOrAliases) {
       language = hljs.getLanguage(lang);
+      match = lang;
       if (language) break;
     }
 
     if (error && !language) throw Error(`Unknown language(s) ${languageAndOrAliases.join(', ')}`);
-    return language;
+    return getMatch && language ? match : language;
   }
 };
 
@@ -53,8 +57,8 @@ export const highlightCode = (
   languageAndOrAliases: string | Array<string> = '',
   error: boolean = true
 ) => {
-  // console.log({ languages, code, error });
-  const language = (getLang(languageAndOrAliases, error) as Language)?.name;
+  const language = getLang(languageAndOrAliases, { error, getMatch: true }) as string;
+  console.log({ language, languageAndOrAliases });
   if (!language) return code;
   let highlighted = '';
   for (let lineOfCode of code.split('\n'))

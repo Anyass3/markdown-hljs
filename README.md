@@ -41,7 +41,7 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
   ```javascript
   import { getLang} from 'markdown-hljs';
   getLang() // for a list of all language names
-  getLang(languageAndOrAliases: Array<string> | string) // for a Language object
+  getLang(languageAndOrAliases: Array<string> | string, options?: { getMatch?: boolean; error?: boolean }) // for a Language object
   ```
 - if you want to add another language(s)
 

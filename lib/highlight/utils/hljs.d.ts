@@ -159,7 +159,7 @@ interface ModesAPI {
 type KeywordData = [string, number];
 type KeywordDict = Record<string, KeywordData>;
 interface Mode extends ModeCallbacks, ModeDetails {}
-type Language = LanguageDetail & Partial<Mode>;
+export type Language = LanguageDetail & Partial<Mode>;
 type CompilerExt = (mode: Mode, parent: Mode | Language | null) => void;
 interface LanguageDetail {
   name?: string;
