@@ -100,16 +100,16 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
   // error is true by default; 
   // meaning is if highlight language is not recognised throw or don't throw error
   ```
-> for `languageAndOrAliases` we can pass in an Array or string in the form `js, cjs, javascript` or `['js','javacript']` or `'js'`
-it will try to find the language by both languageName and aliases
- 
- so in markdown you can also do
- 
- \`\`\`js,javascript
- 
- code..
- 
- \`\`\`
+    > for `languageAndOrAliases` we can pass in an Array or string in the form `js, cjs, javascript` or `['js','javacript']` or `'js'`
+    it will try to find the language by both languageName and aliases
+
+     so in markdown you can also do
+
+     \`\`\`js,javascript
+
+     code..
+
+     \`\`\`
  
  
  
