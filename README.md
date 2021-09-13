@@ -93,12 +93,15 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
   ```javascript
   import {Highlight, highlightCode} from 'markdown-hljs';
 
-  result=Highlight(code string, languageAndOrAliases, error=true) // code in <pre><code>
-  OR
-  result=highlightCode(code string, languageAndOrAliases, error=true) // only code str
+  result=Highlight(code string, languageAndOrAliases, error=false) // code in <pre><code>
+  // error is false by default; 
   
+  OR
+  
+  result=highlightCode(code string, languageAndOrAliases, error=true) // only code str
   // error is true by default; 
-  // meaning is if highlight language is not recognised throw or don't throw error
+  
+  //error: meaning is if highlight language is not recognised throw or don't throw error
   ```
     > for `languageAndOrAliases` we can pass in an Array or string in the form `js, cjs, javascript` or `['js','javacript']` or `'js'`
     it will try to find the language by both languageName and aliases
