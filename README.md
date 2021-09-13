@@ -27,8 +27,16 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
   - $CAPS= any - they are not visible
   - eg: $NAME= MyName
   - can be access anywhere in the markdown as: {$NAME}
-- by default it will be able to highlight 31 common languages to keep it lightweight somehow
-- you can see the langs defined by default in `src/highlight/defaults`
+- by default it will be able to highlight 35 common languages including svelte
+```python
+["xml", "bash", "c", "cpp", "csharp", "css", "markdown", "diff", "ruby", "go", "ini", "java", "javascript", "json", "kotlin", "less", "lua", "makefile", "perl", "objectivec", "php", "php-template", "plaintext", "python", "python-repl", "r", "rust", "scss", "shell", "sql", "swift", "yaml", "typescript", "vbnet", "svelte"]
+```
+- get lang(s)
+  ```javascript
+  import { getLang} from 'markdown-hljs';
+  getLang() // for a list of all language names
+  getLang(languageAndOrAliases: Array<string> | string) // for a Language object
+  ```
 - if you want to add another language(s)
 
   ```javascript
@@ -37,17 +45,17 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
 
   import Markdown,{setLang} from 'markdown-hljs';
 
-  setLang({lang:'xml',fn:xml, alias: ['html']})
+  setLang({language: 'xml', defineLangue: xml, aliases: ['html'] })
 
-  setLang({lang:'customLang',fn:customLang})
+  setLang({language: 'customLang', defineLangue: customLang})
 
   result=Markdown(markdown string,error=false)
-  // error is false by default; 
+  // error is false by default;
   // meaning is if highlight language is not recognised throw or don't throw error
 
   ```
 
-- if you want to add another language(s) but without defaults
+- add another language(s) but without defaults
 
   ```javascript
   import hljs from 'highlight.js/lib/core';
@@ -61,15 +69,15 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
 
   setHljs(hljs)
 
-  setLang({lang:'xml',fn:xml, alias: ['html']})
+  setLang({language:'xml', defineLangue: xml, alias: ['html']})
 
-  setLang({lang:'customLang',fn:customLang})
+  setLang({language: 'customLang', defineLangue: customLang})
 
   result=Markdown(markdown string)
 
   ```
 
-- if you only need markdown without code syntax highlight:
+- markdown without code syntax highlight:
 
   ```javascript
   import {marked} from 'markdown-hljs';
@@ -80,20 +88,20 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
 
   ```
 
-- if you only need to highlight code with defaults
+- highlight code with defaults
 
   ```javascript
-  import {Highlight,highlightCode} from 'markdown-hljs';
+  import {Highlight, highlightCode} from 'markdown-hljs';
 
-  result=Highlight(code string, language, error=true) // code in <pre><code>
+  result=Highlight(code string, languageAndOrAliases, error=true) // code in <pre><code>
   OR
-  result=highlightCode(code string,language, error=true) // only code str
+  result=highlightCode(code string, languageAndOrAliases, error=true) // only code str
   
   // error is true by default; 
   // meaning is if highlight language is not recognised throw or don't throw error
   ```
-> for `language` we can pass in an Array or string in the form `js,cjs,javascript`
- it will choose the first among the list that works
+> for `languageAndOrAliases` we can pass in an Array or string in the form `js, cjs, javascript` or ['js','javacript'] or 'js'
+it will try to find the language by both languageName and aliases
  
  so in markdown you can also do
  
