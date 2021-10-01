@@ -1,7 +1,6 @@
 This build on top of [marked](https://marked.js.org/) and [highlightjs](https://github.com/highlightjs/highlight.js)
 
 So you markdown with code syntax highlighting
-`version 0.1.1`
 
 ## installation
 
