@@ -51,9 +51,11 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
 
   import Markdown,{setLang} from 'markdown-hljs';
 
-  setLang({language: 'xml', defineLangue: xml, aliases: ['html'] })
+  setLang({language: 'xml', defineLanguage: xml, aliases: ['html'] })
+  // to define a language you need to pass the defineLanguage function
+  // if you pass only language and aliases it will just add aliases for the language if it exists
 
-  setLang({language: 'customLang', defineLangue: customLang})
+  setLang({language: 'customLang', defineLanguage: customLang})
 
   result=Markdown(markdown string,error=false)
   // error is false by default;
@@ -75,13 +77,22 @@ cdn [link](https://cdn.jsdelivr.net/npm/markdown-hljs)
 
   setHljs(hljs)
 
-  setLang({language:'xml', defineLangue: xml, alias: ['html']})
+  setLang({language:'xml', defineLanguage: xml, alias: ['html']})
 
-  setLang({language: 'customLang', defineLangue: customLang})
+  setLang({language: 'customLang', defineLanguage: customLang})
 
   result=Markdown(markdown string)
 
   ```
+
+- to use all languages by highlight.js
+
+```javascript
+import { setHljs } from 'markdown-hljs';
+import hljs from 'highlight.js';
+
+setHljs(hljs);
+```
 
 - markdown without code syntax highlight:
 

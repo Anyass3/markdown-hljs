@@ -58,7 +58,6 @@ export const highlightCode = (
   error: boolean = true
 ) => {
   const language = getLang(languageAndOrAliases, { error, getMatch: true }) as string;
-  console.log({ language, languageAndOrAliases });
   if (!language) return code;
   let highlighted = '';
   for (let lineOfCode of code.split('\n'))

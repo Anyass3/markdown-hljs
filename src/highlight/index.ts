@@ -20,7 +20,6 @@ const langs = [
   { language: 'xml', aliases: ['html'] },
   { language: 'svelte', defineLanguage: svelte },
 ];
-
 langs.forEach((lang) => {
   setLang(lang);
 });
